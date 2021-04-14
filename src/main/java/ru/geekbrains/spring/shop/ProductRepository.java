@@ -6,7 +6,12 @@ import java.util.List;
 @Component
 public class ProductRepository {
 
-    private List<Product> products;
+    private final List<Product> products;
+
+    // блок инициализации
+    {
+        products = Product.generateProduct(5);
+    }
 
     public Product getProduct(int id) {
         return products.stream().filter(p -> p.getId() == id).findFirst().get();
@@ -16,7 +21,6 @@ public class ProductRepository {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+
+
 }

@@ -2,6 +2,8 @@ package ru.geekbrains.spring.handlers;
 
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 @Component
@@ -12,6 +14,7 @@ public class ConsoleHandler implements Handler {
     public ConsoleHandler() {
         this.scanner = new Scanner(System.in);
         System.out.println("Enter command");
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     }
 
     @Override

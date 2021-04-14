@@ -1,8 +1,8 @@
 package ru.geekbrains.spring.shop;
 
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.geekbrains.spring.handlers.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,24 +11,15 @@ import java.util.List;
 @Scope("prototype")
 public class Cart {
 
-    private ProductRepository repository;
-    private Handler handler;
+    private final ProductRepository repository;
     private final List<Product> products = new ArrayList<>();
 
-    public void setRepository(ProductRepository repository) {
+    public Cart(ProductRepository repository) {
         this.repository = repository;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
     }
 
     public ProductRepository getRepository() {
         return this.repository;
-    }
-
-    public Handler getHandler() {
-        return handler;
     }
 
     public void addProduct(int id) {
@@ -47,5 +38,10 @@ public class Cart {
             sb.append(products.get(i)).append(System.lineSeparator());
         }
         System.out.println(sb);
+    }
+
+    @Lookup
+    public Cart getNewCart() {
+        return null;
     }
 }
